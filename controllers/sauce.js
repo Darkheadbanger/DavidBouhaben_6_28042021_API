@@ -22,48 +22,63 @@ exports.createSauce = (req, res, next) => {
 };
 
 exports.createLikeSauce = (req, res, next) => {
-  const sauceObjectBodySauce = JSON.parse(req.body.sauce)
-  const sauce = new Sauce
-  //delete sauceObject._id
-  /*const sauce = new Sauce ({
-    ...sauceObject,
+  const sauceObjectBody = JSON.parse(req.body.like)
+  const sauce = new Sauce({
+    //...sauceObject, equivelnnt à ceux d'en bas
     dislikes: 0,
     likes: 0,
     usersDisliked: [],
     usersLiked: []
-  })*/
-  switch (sauceObjectBodySauce) {
-    case 1:
-      Sauce.updateOne({ _id: req.params.id },
-        {$push:{usersLiked}, $inc:{likes: +1}}
-        )
-          .then(() => {
-            return res.status(201).json({ message: 'Objet aimée !'})
-          })    
-          .catch(err => {
-              console.error(err.message)
-              return res.status(400).json({error})
-            })    
-      break;
-    case -1:
-      Sauce.updateOne({ _id: req.params.id },
-        {$push:{usersDisliked}, $inc:{dislikes: -1}}
-        )
-          .then(sauce => {
-            console.success(sauce.message)
-            return res.status(201).json({ message: 'Objet détestée !'})
-          })
-          .catch(err => {
-              console.error(err.message)
-              return res.status(400).json({error})
-            })    
-      break;
-    default:
+  })
+  // Ici je crée une promise, si like, dislike et 0(annuler like et dislike) et fait et il n'y a pas de problème alors  on les pousse au front end, si ca ne fonctionne pas on catch l'erreur 400
+    .then(() => {
+      switch (sauceObjectBody) {
+        case 1:
+          sauce.updateOne({ _id: req.params.id },
+            {$push:{sauce : usersLiked}, $inc:{sauce : likes++}}
+            )
+              .then(() => {
+                return res.status(201).json({ message: 'Objet aimée !'})
+              })    
+              .catch(err => {
+                  console.error(err.message)
+                  return res.status(400).json({error})
+                })    
+          break;
+        case -1:
+          sauce.updateOne({ _id: req.params.id },
+            {$push:{sauce : usersDisliked}, $inc:{sauce : dislikes--}}
+            )
+              .then(() => res.status(201).json({ message: 'Objet détestée !'}))
+              .catch(err => {
+                  console.error(err.message)
+                  return res.status(400).json({error})
+                })    
+          break;
+        case 0 :
+          sauce.updateOne({ _id: req.params.id },
+            {$push:{sauce : usersLiked, usersDisliked}, $inc:{sauce : likes, dislikes}}
+            )
+              .then(() => {
+                return res.status(201).json({ message: 'Objet aimée !'})
+              })    
+              .catch(err => {
+                  console.error(err.message)
+                  return res.status(400).json({error})
+                })    
+          break;
+          /*
+        default:
+          console.error(err.message)
+            return res.status(400).json({error})*/
+      }
+    })
+    .catch(err => {// ici, je rattrape les erreurs si jamaais il y a un problème
       console.error(err.message)
-        return res.status(400).json({error})
+      return res.status(400).json({error})
+    })
+    sauce.save()// Je sauvegarde dans la base de donneés mongoDB
   }
-  sauce.save()
-}
 
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({_id: req.params.id})
