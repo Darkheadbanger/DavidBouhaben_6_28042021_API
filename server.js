@@ -1,5 +1,11 @@
-const http = require('http');
-const app = require('./app');
+const https = require('https') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
+const app = require('./app')
+//const fs = require('fs')
+/*
+const options = {// ici c'est pour le certificate SSL
+    key: fs.readFileSync("/srv/www/keys/my-site-key.pem"),
+    cert: fs.readFileSync("/srv/www/keys/chain.pem")
+}*/
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -36,7 +42,9 @@ const errorHandler = error => {
   }
 };
 
-const server = http.createServer(app);
+//const server = https.createServer(options, app);
+const server = https.createServer(app);
+
 
 server.on('error', errorHandler);
 server.on('listening', () => {
