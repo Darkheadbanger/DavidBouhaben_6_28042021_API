@@ -8,7 +8,7 @@ const helmet = require('helmet')// On incluet le flagHttpOnly appeler Helmet sur
 
 mongoose.connect(
     'mongodb+srv://Darkheadbanger:GrXzPj28TM6661@clusteropc.g2x2f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true } 
 ).then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'));
 
