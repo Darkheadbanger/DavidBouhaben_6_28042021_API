@@ -1,4 +1,5 @@
-const https = require('https') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
+//const https = require('https') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
+const http = require('http') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
 const app = require('./app')
 //const fs = require('fs')
 /*
@@ -43,7 +44,7 @@ const errorHandler = error => {
 };
 
 //const server = https.createServer(options, app);
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 
 server.on('error', errorHandler);

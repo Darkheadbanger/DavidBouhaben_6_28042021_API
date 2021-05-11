@@ -81,7 +81,7 @@ exports.createLikeSauce = (req, res, next) => {
             { _id: req.params.id },
             { $pull: { usersLiked: userId }, $inc: { likes: -1 } }
           )
-            .then(() => res.status(201).json({ message: "Objet aimée !" }))
+            .then(() => res.status(201).json({ message: "like annulé !" }))
             .catch((error) => {
               console.error(error.message);
               return res.status(400).json({ error });
@@ -92,7 +92,7 @@ exports.createLikeSauce = (req, res, next) => {
               { _id: req.params.id },
               { $pull: { usersDisliked: userId }, $inc: { dislikes: -1 } }
             )
-              .then(() => res.status(201).json({ message: "Objet aimée !" }))
+              .then(() => res.status(201).json({ message: "dislike annulé !" }))
               .catch((error) => {
                 console.error(error.message);
                 return res.status(400).json({ error });
@@ -101,7 +101,7 @@ exports.createLikeSauce = (req, res, next) => {
           break;
         default:
           throw new Exception(
-            "Imposisble, vous ne pouvez pas aimer et ne pas aimer en même temps !"
+            "Impossible, vous ne pouvez pas aimer et ne pas aimer en même temps !"
           );
       }
     })

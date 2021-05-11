@@ -6,8 +6,10 @@ const userRoutes = require('./routes/user')
 const path = require('path');
 const helmet = require('helmet')// On incluet le flagHttpOnly appeler Helmet sur express pour sécuriser les cookies et d'empecher un attaque XSS
 
+require("dotenv").config()//
+
 mongoose.connect(
-    'mongodb+srv://Darkheadbanger:GrXzPj28TM6661@clusteropc.g2x2f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    process.env.DATABASE,
     { useNewUrlParser: true, useUnifiedTopology: true } 
 ).then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'));
