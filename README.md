@@ -1,15 +1,11 @@
 # DavidBouhaben_6_28042021_API
 
 OpenClassrooms Projet 6 - API backend SoPekocko "Piquante"
-
-6eme projet de la formation en ligne de développeur web d'OpenClassrooms (mettre le lien)
-
+6eme projet de la formation en ligne de développeur web d'OpenClassrooms
 
 Scénario
-
 Développement d'une application web nommé "Piquante", cet un application de notation de la sauce piquante et permet aux utilisateurs de mettre en ligne leur sauces, de modifier la sauce que l'utilisateur a crée, de l'effacer et d'aimer ou de ne pas aimer la sauce. Parcontre, l'utilisateur ne peut pas modifier ou effacer la sauce d'un autre utilisateurs.
 Dans ce projet, le but est de créer la partie backend pour pouvoir communiquer avec la partie front end qui a déjà été dévéloppé et fourni.
-
 
 Objectifs et la compéténces attendu et évaluées pour ce projet
 
@@ -21,8 +17,7 @@ Objectifs et la compéténces attendu et évaluées pour ce projet
         A.Hébérgement sur mongoDB
         B.Opérations relatives à la base de données fait avec la pack Mongoose
 
-
-Mésure de sécurité mises nen place
+Mésure de sécurité mises en place
 
     * Hashage du mot de passe utilisateurs avec bcrypt
     * Connexion et manipulation sécurisées de la base de donées avec Mongoose
@@ -30,7 +25,6 @@ Mésure de sécurité mises nen place
     * Cacher les données sensibles en utilisant le variables d'environnement dotenv
     * Utilisation de tokken session avec jsonwebtoken pour l'authentification de l'utilisateur
     * Protection des headers avec helmet
-
 
 Pour tester l'application
 
@@ -59,10 +53,9 @@ Pour tester l'application
 
 6. Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000 (attention: authentification requise pour toutes les routes /api/sauces/)
 
-
 ℹ️ Problèmes de version du frontend
 
 La partie frontend fourni par OpenClassroom pose certains problèmes car il a été développé avec l'angular version 7 qui est obsolete et provoque certains problèmes avec ma machine (sous windows) car la version de Node.js que 'utilise est trop récente
 Pour faire fonctionner la partie frontend, voici la solution :
 
-    1. Suivez tout simplement ce tutoriel (lien) mais, il faut recommencer la page 6 à chaque fois que le terminal demande de nettoyer la branche.
+    1. Suivez tout simplement ce tutoriel mais, il faut recommencer la page 6 à chaque fois que le terminal demande de nettoyer la branche.
