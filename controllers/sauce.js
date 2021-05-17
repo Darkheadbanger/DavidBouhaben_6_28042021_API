@@ -1,5 +1,5 @@
 const Sauce = require("../model/Sauce");
-const fs = require("fs");
+const fs = require("fs");// permet de modifier le ficher et de l'effacer
 
 // Les codes pour chaque routes
 exports.createSauce = (req, res, next) => {
@@ -11,9 +11,7 @@ exports.createSauce = (req, res, next) => {
     usersLiked: [],
     dislikes: 0,
     likes: 0,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
   });
   sauce
     .save()
@@ -112,6 +110,7 @@ exports.createLikeSauce = (req, res, next) => {
 };
 
 exports.getOneSauce = (req, res, next) => {
+  {withCredentials: ture}
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
       res.status(200).json(sauce);
@@ -158,6 +157,7 @@ exports.deleteSauce = (req, res, next) => {
 };
 
 exports.getAllSauce = (req, res, next) => {
+  {withCredentials: ture}
   Sauce.find()
     .then((sauces) => {
       res.status(200).json(sauces);

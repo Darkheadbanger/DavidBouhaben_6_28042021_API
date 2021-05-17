@@ -17,16 +17,19 @@ mongoose.connect(
 const app = express()
 
 app.use((req, res, next) => {//CORS (cross origine ressources sharing) pour éviter l'attaque cross-site request forgery (CSRF) et pour respecter la sécurité OWASP
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    //système de sécurité par défault pour bloqué les appelles HTTP de deux servers differents, mais on le désactive car on a 2 servers differents qui doivent pouvoir se communiquer
+    res.setHeader('Access-Control-Allow-Origin', 'FRONTEND_ORIGIN')//
+    //d'ajouter les headers mentionnés aux requêtes envoyées vers notre API 
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+    //d'envoyer des requêtes avec les méthodes mentionnées ( GET ,POST , etc.).
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')//CRUD (create, read, update, delete)
     next();
 })
 
 app.use(bodyParser.json())
 app.use(helmet())// Helmet pour sécruiser et respecter OWASP
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));//multer, endoroit ou telecharger les images
 app.use('/api/sauces', stuffRoutes);
 app.use('/api/auth', userRoutes);
 

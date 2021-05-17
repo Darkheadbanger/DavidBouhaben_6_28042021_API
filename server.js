@@ -1,5 +1,6 @@
 //const https = require('https') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
 const http = require('http') //Https pour  respecter la sécruité conseillé par OWASP pour sécruisée les données en transit
+//Hypertext Transfer Protocol, un protocole de communication client-serveur
 const app = require('./app')
 //const fs = require('fs')
 /*
@@ -45,7 +46,7 @@ const errorHandler = error => {
 
 //const server = https.createServer(options, app);
 const server = http.createServer(app);
-
+console.log(server)
 
 server.on('error', errorHandler);
 server.on('listening', () => {
@@ -54,4 +55,4 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-server.listen(port);
+server.listen(port)
