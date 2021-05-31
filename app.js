@@ -18,7 +18,7 @@ const app = express()
 
 app.use((req, res, next) => {//CORS (cross origine ressources sharing) pour éviter l'attaque cross-site request forgery (CSRF) et pour respecter la sécurité OWASP
     //système de sécurité par défault pour bloqué les appelles HTTP de deux servers differents, mais on le désactive car on a 2 servers differents qui doivent pouvoir se communiquer
-    res.setHeader('Access-Control-Allow-Origin', 'FRONTEND_ORIGIN')//
+    res.setHeader('Access-Control-Allow-Origin', "*")//
     //d'ajouter les headers mentionnés aux requêtes envoyées vers notre API 
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization')
     //d'envoyer des requêtes avec les méthodes mentionnées ( GET ,POST , etc.).
